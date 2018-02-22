@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    input {
+      padding: 0 20px;
+      width: 300px;
+      height: 45px;
+      font-size: 22px;
+      border: 1px solid skyblue;
+      border-radius: 5px;
+    }
+    input:focus {
+      border: 1px solid skyblue;
+    }
+  </style>
+</head>
+<body style="padding: 30px; font-size: 22px">
+一、渐进式(提供的功能拆分开，可以一步步使用):<br>
+  1. 声明式渲染 | 所谓声明式，实际就相当于语法糖，开发者不用关心底层实现，只需按照格式去堆代码，比如使用模板引擎<br>
+  2. 组件系统   | vue-cli  .vue文件<br>
+  3. 客户端路由 | (单页应用)<br>
+  4. 大规模状态管理<br><br>
+
+二、两大核心<br>
+  1. 双向绑定 - new Object().defineProperty()<br>
+---------------------------------------------------------------<br>
+  <div id="mvvm-demo">
+    <input type="text" v-model="message">
+    <p>{{ message }}</p>
+    <button @click="clickHandle" style="padding: 8px 20px">点我查看vue的this指针</button>
+  </div>
+---------------------------------------------------------------<br>
+  2. 组合视图组件 http://element.eleme.io/#/zh-CN <br><br>
+
+三、虚拟dom<br>
+  将dom元素通过虚拟dom对象模拟出来，改变dom结构时，实际上是对比两个虚拟dom对象，继而去操作真实dom
+
+四、MVVM模式
+    dom => modelAndView <= data
+
+
+<br>
+<script src="lib/vue.js"></script>
+<script>
+  // 二 双向绑定示例
+  var vm = new Vue({
+      el: '#mvvm-demo',
+      data:{
+          message: 'vue.js first lesson'
+      },
+      methods: {
+          // 事件绑定方式
+          clickHandle: function () {
+              console.log('↓ this is the native dom element which is bound by vue ↓');
+              console.log( this.$el );
+          }
+      }
+  });
+
+
+</script>
+</body>
+</html>
