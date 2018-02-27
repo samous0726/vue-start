@@ -15,9 +15,12 @@
     input:focus {
       border: 1px solid skyblue;
     }
+    p {
+      margin: 8px 0;
+    }
   </style>
 </head>
-<body style="padding: 30px; font-size: 22px">
+<p style="padding: 30px; font-size: 19px">
 一、渐进式(提供的功能拆分开，可以一步步使用):<br>
   1. 声明式渲染 | 所谓声明式，实际就相当于语法糖，开发者不用关心底层实现，只需按照格式去堆代码，比如使用模板引擎<br>
   2. 组件系统   | vue-cli  .vue文件<br>
@@ -26,29 +29,45 @@
 
 二、两大核心<br>
   1. 双向绑定 - new Object().defineProperty()<br>
----------------------------------------------------------------<br>
+<p>-------------------- example --------------------</p>
   <div id="mvvm-demo">
     <input type="text" v-model="message">
     <p>{{ message }}</p>
     <button @click="clickHandle" style="padding: 8px 20px">点我查看vue的this指针</button>
   </div>
----------------------------------------------------------------<br>
+<p>-------------------------------------------------</p>
   2. 组合视图组件 http://element.eleme.io/#/zh-CN <br><br>
 
 三、虚拟dom<br>
   将dom元素通过虚拟dom对象模拟出来，改变dom结构时，实际上是对比两个虚拟dom对象，继而去操作真实dom<br>
 
-四、MVVM模式&#10;
-    dom => modelAndView <= data&#10;
+四、MVVM模式<br>
+    dom => modelAndView <= data<br>
 
-五、指令&#10;
+五、指令<br>
+<p>-------------------- example --------------------</p>
+  <div id="directives-demo">
+    <span :customId="id" style="padding: 5px 30px">{{ message }}</span>
+  </div>
+<p>-------------------------------------------------</p>
+
+六、模板<br>
+  1、html模板 给予DOM的模板，可解析的有效的html<br>
+<p>-------------------- example --------------------</p>
+  <div class="html-demo">
+    <div style="padding: 5px 30px" v-html="html"></div>
+  </div>
+<p>-------------------------------------------------</p>
+  2、template模板<br>
+  3、render函数模板<br>
+
 
 
 <br>
 <script src="lib/vue.js"></script>
 <script>
-  // 二 双向绑定示例
-  var vm = new Vue({
+  // 双向绑定
+  var demo1 = new Vue({
       el: '#mvvm-demo',
       data:{
           message: 'vue.js first lesson'
@@ -62,6 +81,23 @@
       }
   });
 
+  // 指令
+  var demo2 = new Vue({
+      el: '#directives-demo',
+      data:{
+          message: '指令方式绑定自定义属性值',
+          // 渲染html属性
+          id: '123'
+      }
+  });
+
+  // html模板
+  var demo3 = new Vue({
+      el: '.html-demo',
+      data:{
+          html: '<div>hello world</div>'
+      }
+  });
 
 </script>
 </body>
